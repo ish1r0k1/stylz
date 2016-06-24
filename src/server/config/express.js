@@ -24,7 +24,7 @@ export default (app) => {
   app.use(express.static(path.join(__dirname, (ENV === 'development' ? '../../..' : '../..'), 'public')));
 
   // HTTP request logger
-  app.use(morgan('dev'))
+  // app.use(morgan('dev'))
 
   console.log('------------------------')
   console.log(`Listening on port: ${app.get('port')}`)
