@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import { routerMiddleware } from 'react-router-redux'
 import createLogger from 'redux-logger'
 import rootReducer from './reducers'
 
 export default function configureStore(initialState, history) {
-  const middlewares = []
+  const middlewares = [routerMiddleware]
 
   middlewares.push(createLogger())
 
