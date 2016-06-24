@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+// Variables
+//////////////////////////////
+
+// ======== Breakpoints ========
+// snippets: @media (max-width: $bp-larger-than-mobile - 1) { }
+//           @media (min-width: $bp-larger-than-mobile) and (max-width: $bp-larger-than-tablet - 1) { }
+//           @media (min-width: $bp-larger-than-tablet) and (max-width: $bp-larger-than-desktop - 1) { }
+//           @media (min-width: $bp-larger-than-desktop) { }
+$bp-larger-than-mobile    : "min-width: 480px" !default;
+$bp-larger-than-tablet    : "min-width: 768px" !default;
+$bp-larger-than-desktop   : "min-width: 1024px" !default;
+$bp-larger-than-desktophd : "min-width: 1024px" !default;
+
+// ======== Colors ========
+$white: #fff;
+$black: #000;
+$dark-gray: #383838;
+$gray: #a0a0a0;
+$light-gray: #dfdfdf;
+$off-white: #f0f0f0;
+
+$primary-color: #11c380;
+// $attention-color: #FF4616;
+$attention-color: #f85a5a;
+// $secondary-color: #000;
+$font-color: $dark-gray;
+$link-color: $font-color;
+$charcoal: #272822;
+
+// SNS
+$facebook-blue: #3B5998;
+$hatebu-blue: #008FDE;
+$twitter-blue: #55ACEE;
+$line-green: #00c300;
+$gp-red: #dd4b39;
+
+// Typography
+$ff_gothic: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+$ff_gothic_sp: Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+$ff_mincho: "游明朝",YuMincho,"ヒラギノ明朝 ProN W3","Hiragino Mincho ProN","HG明朝","ＭＳ Ｐ明朝","ＭＳ 明朝",serif;
+
+
+// $fz_largest : 42px;
+$fz_larger: 30px;
+$fz_large: 24px;
+$fz_medium: 18px;
+$fz_normal: 14px;
+// $fz_small: 12px;
+// $fz_smaller : 10px;
+
+// Index
+//////////////////////////////
+// snippets: z-index: index($z, header);
+$z: header, footer, content;
+
+// Sizes
+//////////////////////////////
+$mw: 1080px;
+$input-h: 36px;
