@@ -1,14 +1,14 @@
 import express from 'express'
-import morgan from 'morgan'
-
+import expressConfig from './config/express'
 const app = express()
 
-app.use(morgan('combined'))
-
-app.set('port', (process.env.PORT || 3000))
+/*
+ * Bootstrap application settings
+ */
+expressConfig(app)
 
 app.get('*', (req, res) => {
   res.send('Hello, World')
 })
 
-app.listen(app.get('port'));
+app.listen(app.get('port'))
