@@ -1,0 +1,7 @@
+{
+  "verbose": false,
+  "watch": [
+    "src/server"
+  ],
+  "exec": "npm run build:style -- -w & npm run build:dev & npm run babel-node -- src/server/index.js"
+}
