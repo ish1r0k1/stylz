@@ -8,7 +8,17 @@ const app = express()
 expressConfig(app)
 
 app.get('*', (req, res) => {
-  res.send('Hello, World')
+  res.render('index', {
+    title: 'stylz'
+  })
+})
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500)
+  res.render('error', {
+    message: err.message,
+    error: {}
+  })
 })
 
 app.listen(app.get('port'))
