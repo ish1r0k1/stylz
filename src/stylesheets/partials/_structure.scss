@@ -5,7 +5,13 @@
 
 // html { font-size: 62.5%; }
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
+  @extend html;
   line-height: 1.6;
   font-family: $ff_gothic;
   letter-spacing: .03em;
@@ -38,6 +44,10 @@ a {
 img { vertical-align: top; }
 
 ul, ol { list-style: none; }
+
+input {
+  &:focus { outline: none; }
+}
 
 // Utilities
 //////////////////////////////

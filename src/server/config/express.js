@@ -1,9 +1,10 @@
-import express from 'express'
-import path from 'path'
-import bodyParser from 'body-parser'
-import methodOverride from 'method-override'
-import morgan from 'morgan'
-import { ENV } from './appConfig'
+import express from 'express';
+import passport from 'passport';
+import path from 'path';
+import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
+import morgan from 'morgan';
+import { ENV } from './appConfig';
 
 export default (app) => {
   // view engine config
@@ -27,6 +28,10 @@ export default (app) => {
   // app.use(morgan('dev'))
 
   console.log('------------------------')
-  console.log(`Listening on port: ${app.get('port')}`)
+  console.log('===> Starting Server');
+  console.log(`===> Environment: ${ENV}`);
+  console.log(`===> Listening on port: ${app.get('port')}`);
   console.log('------------------------')
+
+  app.use(passport.initialize());
 }

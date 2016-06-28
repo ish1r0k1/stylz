@@ -6,3 +6,109 @@
   padding-right: 0;
   padding-left: 0;
 }
+
+/* Latout
+ *************************/
+#app {
+  height: 100%;
+  position: relative;
+}
+
+.container {
+  width: 80%;
+  max-width: $mw;
+  margin: 60px auto 0;
+  position: relative;
+
+  @media (max-width: $screen-xs-max) {
+    margin-top: 30px;
+  }
+}
+
+/* Login and Signup
+ *************************/
+.login-form {
+  width: 320px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login__header {
+  @extend %roboto;
+  font-size: $fz_larger;
+  text-align: center;
+}
+
+.input-group {
+
+}
+
+.input-field {
+  margin: 20px 0;
+
+  input {
+    width: 100%;
+    font-size: $fz_normal;
+    padding: 8px 12px;
+    background-color: $white;
+  }
+
+  input[type=submit] {
+    background-color: $primary-color;
+    color: $white;
+    border: solid 1px darken($primary-color, 5);
+  }
+}
+
+/* Header
+ *************************/
+.header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding-left: 36px;
+  padding-right: 36px;
+  background-color: $white;
+  position: relative;
+}
+
+.header__logo {
+  @extend %roboto;
+  font-size: $fz_medium;
+}
+
+.header__ctrls {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Footer
+ *************************/
+.footer {
+  background-color: $light-gray;
+  color: $gray;
+  margin-top: 80px;
+  padding: 26px 36px;
+  box-shadow: inset 1px 0 3px rgba($gray, .2);
+
+  @media (max-width: $screen-xs-max) {
+    margin-top: 40px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+.footer__copyright {
+  font-size: $fz_normal;
+}
+
+.footer__link {
+  &:hover { text-decoration: underline; }
+}
