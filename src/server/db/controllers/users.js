@@ -64,16 +64,16 @@ export function getUserData(req, res, next) {
  * Create a new local account
  */
 export function signUp(req, res, next) {
-  const { email, username, password } = req.body;
+  const { /*email,*/ username, password } = req.body;
 
   const user = new User({
-    email: email,
+    // email: email,
     username: username,
     password: password
   });
 
   User.findOne({
-    $or: [{ username }, { email }]
+    $or: [/*{ email },*/ { username }]
   }, (findErr, existingUser) => {
     if (existingUser) {
       return res.status(409).json({ message: 'Account with this username already exists!' });
@@ -83,7 +83,7 @@ export function signUp(req, res, next) {
       if (saveErr) return next(saveErr);
 
       return req.logIn(user, { session: false }, (loginErr) => {
-        const { email, username, password } = user;
+        const { /*email,*/ username, password } = user;
 
         const jsonWebToken = jwt.sign({ username, password }, tokenSecret)
 

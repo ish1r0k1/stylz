@@ -59,16 +59,18 @@ export class LoginOrRegist extends Component {
 
           const { signUp } = this.props
 
-          const email = ReactDOM.findDOMNode(this.refs.rEmail).value
+          // const email = ReactDOM.findDOMNode(this.refs.rEmail).value
           const username = ReactDOM.findDOMNode(this.refs.rUsername).value
           const password = ReactDOM.findDOMNode(this.refs.rPassword).value
 
-          signUp({ email, username, password })
+          signUp({ /*email,*/ username, password })
         }}>
           <div className="input-group">
+{/*
             <div className="input-field">
               <input type="text" placeholder="Email" ref="rEmail"/>
             </div>
+*/}
             <div className="input-field">
               <input type="text" placeholder="Username" ref="rUsername"/>
             </div>
