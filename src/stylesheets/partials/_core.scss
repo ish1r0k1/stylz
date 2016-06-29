@@ -7,7 +7,7 @@
   padding-left: 0;
 }
 
-/* Latout
+/* Layout
  *************************/
 #app {
   height: 100%;
@@ -23,6 +23,58 @@
   @media (max-width: $screen-xs-max) {
     margin-top: 30px;
   }
+}
+
+.section {
+  padding: 36px 0;
+  border-top: solid 2px $light-gray;
+
+  &.no-gutter { padding: 0; }
+}
+
+.section__heading { margin-bottom: 24px; }
+
+.section__title {
+  display: block;
+  font-size: $fz_large;
+  @extend %roboto;
+}
+
+.list {
+  margin: -8px;
+  list-style: none;
+
+  @media (max-width: $screen-md-min) {
+    margin-bottom: 24px;
+  }
+}
+
+.item {
+  padding: 8px;
+  position: relative;
+
+  @media (max-width: $screen-xs-max) {
+    min-width: 200px;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    &:hover {
+      background-color: rgba($dark-gray, .05);
+
+      .item__remove { display: block; }
+    }
+  }
+}
+
+.item__remove {
+  font-size: $fz_large;
+  color: $gray;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  line-height: 1;
+  display: none;
+  height: $fz_large;
 }
 
 /* Login and Signup
@@ -111,4 +163,26 @@
 
 .footer__link {
   &:hover { text-decoration: underline; }
+}
+
+
+/* Project
+ *************************/
+.project__heading {
+  padding-bottom: 40px;
+
+  @media (max-width: $screen-xs-max) {
+    padding-bottom: 20px;
+  }
+}
+
+.project__name {
+  font-size: $fz_larger;
+  @extend %roboto;
+
+  &.editable {
+    border: solid 1px $light-gray;
+    padding: 5px 8px;
+    margin: -5px -8px;
+  }
 }
