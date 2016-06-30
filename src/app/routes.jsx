@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import HelloWorld from './components/HelloWorld'
 import LoginOrRegist from './containers/LoginOrRegist'
 import CoreLayout from './containers/CoreLayout'
-import NewProject from './containers/NewProject'
+import * as Projects from './containers/projects'
 
 export default (store) => {
   const requireAuth = (nextState, replace, callback) => {
@@ -21,7 +21,7 @@ export default (store) => {
     const { user: { authenticated } } = store.getState()
     if (authenticated) {
       replace({
-        pathname: '/dashboard'
+        pathname: '/projects'
       })
     }
     callback()
@@ -30,7 +30,10 @@ export default (store) => {
   return (
     <Route path="/" component={CoreLayout}>
       <IndexRoute component={LoginOrRegist} onEnter={redirectAuth} />
-      <Route path="/dashboard" component={HelloWorld} onEnter={requireAuth} />
-      <Route path="/new-project" component={NewProject} onEnter={requireAuth} />
+
+      <Route path="/projects" component={Projects.List} onEnter={requireAuth} />
+      <Route path="/projects/new" component={Projects.Edit} onEnter={requireAuth} />
+      <Route path="/projects/view/:id" component={Projects.View} />
+      <Route path="/projects/edit/:id" component={Projects.Edit} onEnter={requireAuth} />
     </Route>)
 }

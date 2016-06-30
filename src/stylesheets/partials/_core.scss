@@ -19,6 +19,7 @@
   max-width: $mw;
   margin: 60px auto 0;
   position: relative;
+  padding: 0;
 
   @media (max-width: $screen-xs-max) {
     margin-top: 30px;
@@ -75,6 +76,25 @@
   line-height: 1;
   display: none;
   height: $fz_large;
+}
+
+.page__heading {
+  padding-bottom: 40px;
+
+  @media (max-width: $screen-xs-max) {
+    padding-bottom: 20px;
+  }
+}
+
+.page__title {
+  font-size: $fz_larger;
+  @extend %roboto;
+
+  &.editable {
+    border: solid 1px $light-gray;
+    padding: 5px 8px;
+    margin: -5px -8px;
+  }
 }
 
 /* Login and Signup
@@ -166,23 +186,41 @@
 }
 
 
-/* Project
+/* Projects
  *************************/
-.project__heading {
-  padding-bottom: 40px;
+.projects { }
 
-  @media (max-width: $screen-xs-max) {
-    padding-bottom: 20px;
+.projects__item {
+  position: relative;
+  padding: 10px 1em;
+  border-top: solid 1px $light-gray;
+
+  &:last-child { border-bottom: solid 1px $light-gray; }
+
+  a {
+    cursor: pointer;
+
+    &:hover { color: $primary-color; }
   }
 }
 
-.project__name {
-  font-size: $fz_larger;
-  @extend %roboto;
+.projects__item-name {
 
-  &.editable {
-    border: solid 1px $light-gray;
-    padding: 5px 8px;
-    margin: -5px -8px;
+}
+
+.projects__item-ctrls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  margin-right: 10px;
+
+  > a {
+    float: left;
+    display: inline-block;
+    margin: 10px 0;
+    color: $gray;
+
+    + a { margin-left: 16px; }
   }
 }

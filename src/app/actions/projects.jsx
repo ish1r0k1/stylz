@@ -1,0 +1,109 @@
+import request from 'superagent'
+import * as types from '../types'
+import Color from 'color'
+
+// Actions
+const fetchProjectsSuccess = (projects) => {
+  return {
+    type: types.FETCH_PROJECTS_SUCCESS,
+    projects
+  }
+}
+
+const fetchProjectsError = () => {
+  return { type: types.FETCH_PROJECTS_ERROR }
+}
+
+const fetchProjectSuccess = (project) => {
+  return {
+    type: types.FETCH_PROJECT_SUCCESS,
+    project
+  }
+}
+
+const fetchProjectError = () => {
+  return { type: types.FETCH_PROJECT_ERROR }
+}
+
+const saveProjectSuccess = (project) => {
+  return {
+    type: types.SAVE_PROJECT_SUCCESS,
+    project
+  }
+}
+
+const saveProjectError = () => {
+  return { type: types.SAVE_PROJECT_ERROR }
+}
+
+
+// Action Creators
+export const fetchProjects = () => {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState()
+
+    return request
+      .get(`/api/projects`)
+      .set('Authorization', `Bearer ${token}`)
+      .send()
+      .end((err, res) => {
+        if (res.status === 200) {
+          dispatch(fetchProjectsSuccess(res.body))
+        } else {
+          dispatch(fetchProjectsError())
+        }
+      })
+  }
+}
+
+export const fetchProject = (id) => {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState()
+
+    return request
+      .get(`/api/projects/${id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send()
+      .end((err, res) => {
+        if (res.status === 200) {
+          dispatch(fetchProjectSuccess(res.body))
+        } else {
+          dispatch(fetchProjectError())
+        }
+      })
+  }
+}
+
+export const saveProject = (project) => {
+  project = {
+    name: 'untitled',
+    colors: [{
+      name: 'Black',
+      data: Color('#000000').hexString()
+    }],
+    fontSizes: [{
+      number: 10,
+      unit: 'px'
+    }],
+    fontFamilies: [{
+      family: 'Roboto',
+      weight: 300
+    }]
+  }
+
+  return (dispatch, getState) => {
+    const { user: { token } } = getState()
+    const saveRequest = !project.id ? request.post(`/api/projects`) : request.put(`/api/projects/${project.id}`)
+
+    return saveRequest
+      .set('Authorization', `Bearer ${token}`)
+      .send(project)
+      .end((err, res) => {
+        if (res.status === 200) {
+          dispatch(saveProjectSuccess(res.body))
+        } else {
+          dispatch(saveProjectError())
+        }
+      })
+  }
+}
