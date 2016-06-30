@@ -54,10 +54,10 @@ export const login = (data) => {
       .send(data)
       .end((err, res) => {
         if (res.status === 200) {
-          localStorage.setItem('jwt', res.body.jsonWebToken)
+          localStorage.setItem('token', res.body.jsonWebToken)
 
           dispatch(loginSuccess(res.body))
-          dispatch(push('/dashboard'))
+          dispatch(push('/projects'))
         } else {
           dispatch(loginError('Oops! Something went wrong!'))
         }
@@ -65,21 +65,21 @@ export const login = (data) => {
   }
 }
 
-export const fetchState = () => {
-  const jwt = localStorage.getItem('jwt');
+export const fetchProfile = () => {
+  const token = localStorage.getItem('token')
 
   return dispatch => {
     dispatch(beginLogin())
 
-    if (jwt) {
+    if (token) {
       return request
         .get('/api/login')
-        .set('Authorization', `Bearer ${jwt}`)
+        .set('Authorization', `Bearer ${token}`)
         .send()
         .end((err, res) => {
           if (res.status === 200) {
             const { username } = res.body;
-            const jsonWebToken = jwt;
+            const jsonWebToken = token;
 
             dispatch(loginSuccess({username, jsonWebToken}))
           } else {
@@ -95,7 +95,7 @@ export const fetchState = () => {
 
 export const logout = () => {
   return dispatch => {
-    localStorage.removeItem('jwt')
+    localStorage.removeItem('token')
 
     dispatch(logoutSuccess())
     dispatch(push('/'))
@@ -109,8 +109,10 @@ export const signUp = (data) => {
       .send(data)
       .end((err, res) => {
         if (res.status === 200) {
+          localStorage.setItem('token', res.body.jsonWebToken)
+
           dispatch(signUpSuccess(res.body))
-          dispatch(push('/dashboard'))
+          dispatch(push('/projects'))
         } else {
           dispatch(signUpError('Oops! Something went wrong!'))
         }
