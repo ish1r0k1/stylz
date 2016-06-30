@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchProject } from '../../actions/projects'
 import ColorList from '../../components/ColorList'
 import FontSizesList from '../../components/FontSizeList'
+import FontFamilyList from '../../components/FontFamilyList'
 
 export class ProjectView extends Component {
   static get propTypes() {
@@ -33,6 +34,7 @@ export class ProjectView extends Component {
           </div>
           <ColorList colors={project.colors} />
           <FontSizesList sizes={project.fontSizes} />
+          <FontFamilyList families={project.fontFamilies} />
         </div>
       : null)
   }

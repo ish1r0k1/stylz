@@ -312,3 +312,14 @@
     }
   }
 }
+
+/* Fonts
+ *************************/
+.font-families { }
+
+.font-family {
+  > span { display: block; }
+}
+
+.font-family__name { font-size: $fz_medium; }
+.font-family__weight { @extend .color__hex; }
