@@ -1,21 +1,46 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { fetchProject } from '../../actions/projects'
 
 export class ProjectView extends Component {
   static get propTypes() {
-    return {}
+    return {
+      params: PropTypes.object
+    }
   }
 
   constructor(props) {
     super(props)
   }
 
+  componentDidMount() {
+    const { fetchProject, params: { id } } = this.props
+
+    fetchProject(id)
+  }
+
   render() {
+    const { project: { items }, params: { id } } = this.props
+    const project = items[id]
+
     return (
-      <div>Project Viewer</div>)
+      project ?
+        <div>
+          <div className="page__heading">
+            <h2 className="page__title">{project.name}</h2>
+          </div>
+        </div>
+      : null)
   }
 }
 
-export default connect(state => ({}), {
+const mapStateToProps = ({ project }) => {
+  return {
+    project
+  }
+}
 
-})(ProjectView)
+export default connect(
+  mapStateToProps,
+  { fetchProject }
+)(ProjectView)
