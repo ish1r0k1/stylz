@@ -32,7 +32,7 @@ routesConfig(app);
  * App is a function that requires store data and url
  * to initialize and return the React-rendered html string
  */
-app.get('*', (req, res) => {
+app.get(/^\/(?!api).*$/, (req, res) => {
   res.render('index', {
     title: 'stylz'
   });
