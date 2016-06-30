@@ -84,12 +84,11 @@ export function signUp(req, res, next) {
 
       return req.logIn(user, { session: false }, (loginErr) => {
         const { /*email,*/ username, password } = user;
-
         const jsonWebToken = jwt.sign({ username, password }, tokenSecret)
 
         if (loginErr) return res.status(401).json({ message: loginErr });
         return res.status(200).json(Object.assign({},
-          { username },
+          { username, jsonWebToken },
           { message: 'You have been successfully logged in.' }
         ));
       });
