@@ -32,5 +32,12 @@ export default (app) => {
     });
   });
 
+  if (projectsController) {
+    apiRoutes.get('/projects', projectsController.getProjects);
+    apiRoutes.post('/projects', projectsController.getProject);
+    apiRoutes.put('/projects/:id', projectsController.saveProject);
+    apiRoutes.delete('/projects/:id', projectsController.deleteProject);
+  }
+
   app.use('/api', apiRoutes);
 };
