@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import Section from '../components/Section'
-import ColorItem from '../components/ColorItem'
+import Section from './Section'
+import ColorItem from './ColorItem'
 
 export default class ColorList extends Component {
   static get propTypes() {
