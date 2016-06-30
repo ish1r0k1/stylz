@@ -10,7 +10,7 @@ import {
 
 export default function user(state = {
   meta: { username: '' },
-  jwt: '',
+  token: '',
   isWaiting: true,
   authenticated: false
 }, action = {}) {
@@ -25,7 +25,7 @@ export default function user(state = {
         isWaiting: false,
         authenticated: true,
         meta: { username: action.user.username },
-        jwt: action.user.jsonWebToken
+        token: action.user.jsonWebToken
       })
     case LOGIN_ERROR:
       return Object.assign({}, state, {
@@ -36,7 +36,7 @@ export default function user(state = {
     case SIGNUP_SUCCESS:
       return Object.assign({}, state, {
         authenticated: true,
-        jwt: action.user.jsonWebToken
+        token: action.user.jsonWebToken
       })
     case SIGNUP_ERROR:
       return Object.assign({}, state, {
