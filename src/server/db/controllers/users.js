@@ -84,6 +84,10 @@ export function signUp(req, res, next) {
 
       return req.logIn(user, { session: false }, (loginErr) => {
         const { /*email,*/ username, password } = user;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c8322f1b4dfd4ac3595c27bb5643f0fd669f88d
         const jsonWebToken = jwt.sign({ username, password }, tokenSecret)
 
         if (loginErr) return res.status(401).json({ message: loginErr });
