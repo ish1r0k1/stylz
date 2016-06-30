@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { fetchProject } from '../../actions/projects'
 import ColorList from '../../components/ColorList'
+import FontSizesList from '../../components/FontSizeList'
 
 export class ProjectView extends Component {
   static get propTypes() {
@@ -31,6 +32,7 @@ export class ProjectView extends Component {
             <h2 className="page__title">{project.name}</h2>
           </div>
           <ColorList colors={project.colors} />
+          <FontSizesList sizes={project.fontSizes} />
         </div>
       : null)
   }

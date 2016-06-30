@@ -265,3 +265,50 @@
 .color__hex { color: $gray; }
 
 .color__rgb { @extend .color__hex; }
+
+/* Typography
+ *************************/
+.font-sizes {
+  margin: 0;
+
+  .item {
+    > .item__remove {
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      margin-right: 8px;
+    }
+  }
+}
+
+.font-size {
+  display: flex;
+  align-items: center;
+  font-size: $fz_medium;
+  line-height: 1.2;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .size {
+    text-align: center;
+    font-size: $fz_medium;
+    margin-right: 2em;
+    @extend .color__hex;
+
+    @media (max-width: $screen-xs-max) {
+      font-size: $fz_normal;
+      margin-right: 1em;
+    }
+  }
+
+  .text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: .5em;
+
+    @media (max-width: $screen-md-min) {
+      padding-right: 0;
+    }
+  }
+}
