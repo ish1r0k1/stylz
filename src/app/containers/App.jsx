@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
 import { Router } from 'react-router'
 import CoreLayout from '../components/CoreLayout'
-import { fetchState } from '../actions/users'
+import { fetchProfile } from '../actions/users'
 
 export class App extends Component {
   static get propTypes() {
@@ -16,9 +16,9 @@ export class App extends Component {
   }
 
   componentWillMount() {
-    const { fetchState } = this.props
+    const { fetchProfile } = this.props
 
-    fetchState()
+    fetchProfile()
   }
 
   constructor(props) {
@@ -46,5 +46,5 @@ const mapStateToProps = ({user}) => {
 
 export default connect(
   mapStateToProps,
-  { fetchState }
+  { fetchProfile }
 )(App)
