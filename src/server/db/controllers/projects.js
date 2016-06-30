@@ -65,6 +65,10 @@ export function saveProject(req, res, next) {
   });
 }
 
+export function updateProject(req, res, next) {
+
+}
+
 export function deleteProject(req, res, next) {
 
 }
@@ -73,5 +77,6 @@ export default {
   getProjects,
   getProject,
   saveProject,
+  updateProject,
   deleteProject
 };

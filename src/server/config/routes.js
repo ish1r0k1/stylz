@@ -34,8 +34,9 @@ export default (app) => {
 
   if (projectsController) {
     apiRoutes.get('/projects', projectsController.getProjects);
-    apiRoutes.post('/projects', projectsController.getProject);
-    apiRoutes.put('/projects/:id', projectsController.saveProject);
+    apiRoutes.get('/projects/:id', projectsController.getProject);
+    apiRoutes.post('/projects', projectsController.saveProject);
+    apiRoutes.put('/projects/:id', projectsController.updateProject);
     apiRoutes.delete('/projects/:id', projectsController.deleteProject);
   }
 
