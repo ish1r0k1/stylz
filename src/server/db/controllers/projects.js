@@ -9,12 +9,8 @@ import { Types } from 'mongoose';
 export function getProjects(req, res, next) {
   const { username } = req.decoded;
 
-  console.log( 'uid', username )
-
   Project.find().populate('owner').exec((findErr, projects) => {
     if (findErr) return res.status(500).json({ message: findErr });
-
-    console.log( 'prjs', projects )
 
     projects = projects.filter(project => {
       return project.owner.username === username;
@@ -34,7 +30,19 @@ export function getProjects(req, res, next) {
 }
 
 export function getProject(req, res, next) {
+  const { id } = req.body;
 
+  Project.findOne({ id: id }, (findErr, project) => {
+    if (findErr) return res.status(500).json({ message: findErr });
+
+    const { name, colors, fontSizes, fontFamilies } = project;
+    const restult = Object.assign({},
+      { id: project._id },
+      { name, colors, fontSizes, fontFamilies }
+    );
+
+    return res.status(200).json(restult);
+  });
 }
 
 export function saveProject(req, res, next) {
@@ -42,8 +50,6 @@ export function saveProject(req, res, next) {
   const { username } = req.decoded;
 
   User.findOne({ username }, (findErr, user) => {
-    console.log( user )
-
     let project = new Project({
       name: name,
       colors: colors,
