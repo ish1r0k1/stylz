@@ -5,7 +5,8 @@ export default class FontSizeItem extends Component {
   static get propTypes() {
     return {
       number: PropTypes.number.isRequired,
-      unit: PropTypes.string.isRequired
+      unit: PropTypes.string.isRequired,
+      onRemove: PropTypes.func.isRequired
     }
   }
 
@@ -13,8 +14,15 @@ export default class FontSizeItem extends Component {
     super(props)
   }
 
+  onRemoveHandler(index, evt) {
+    evt.preventDefault()
+
+    const { onRemove } = this.props
+    onRemove(index)
+  }
+
   render() {
-    const { number, unit } = this.props
+    const { index, number, unit } = this.props
 
     const styles = {
       fontSize: number + unit
@@ -26,6 +34,7 @@ export default class FontSizeItem extends Component {
           <span className="size">{number + unit}</span>
           <span className="text">Lorem ipsum dolor sit amet.</span>
         </p>
+        <a onClick={this.onRemoveHandler.bind(this, index)} className="item__remove">×</a>
       </li>)
   }
 }
