@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Color from 'color'
 import Section from './Section'
 import ColorItem from './ColorItem'
+import CodeView from './CodeView'
 
 export default class ColorList extends Component {
   static get propTypes() {
@@ -58,6 +59,14 @@ export default class ColorList extends Component {
           onRemove={this.onRemove}/>)
     })
 
+    const codeLines = colors.map(color => {
+      let { name, data } = color
+      data = Color(data)
+
+      return (
+        `$${name}: ${data.hexString()};\n`)
+    })
+
     return (
       <Section title="Colors">
         <form className="edit" onSubmit={this.onAddHandler}>
@@ -77,7 +86,9 @@ export default class ColorList extends Component {
             </ul>
           </div>
           <div className="col-md-4 col-sm-12 code">
-            <div>code</div>
+            <CodeView>
+              {codeLines}
+            </CodeView>
           </div>
         </div>
       </Section>

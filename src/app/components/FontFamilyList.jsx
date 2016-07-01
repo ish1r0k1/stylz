@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import Section from './Section'
 import FontFamilyItem from '../components/FontFamilyItem'
+import CodeView from './CodeView'
+import { toCamelCase } from '../utils'
 
 export default class FontFamilyList extends Component {
   static get propTypes() {
@@ -55,6 +57,15 @@ export default class FontFamilyList extends Component {
           onRemove={this.onRemove}/>)
     })
 
+    const codeLines = families.map((font, key) => {
+      const { family, weight } = font
+      const index = families.length - key
+
+      return (
+        `$${toCamelCase(family.toLowerCase())}: '${family}', sans-serif;\n`)
+    })
+
+
     return (
       <Section title="Font Families">
         <form className="edit" onSubmit={this.onAddHandler}>
@@ -74,7 +85,9 @@ export default class FontFamilyList extends Component {
             </ul>
           </div>
           <div className="col-md-4 col-sm-12 code">
-            <div>code</div>
+            <CodeView>
+              {codeLines}
+            </CodeView>
           </div>
         </div>
       </Section>)

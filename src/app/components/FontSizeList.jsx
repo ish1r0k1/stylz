@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import Section from './Section'
 import FontSizeItem from './FontSizeItem'
+import CodeView from './CodeView'
 
 export default class FontSizesList extends Component {
   static get propTypes() {
@@ -56,6 +57,14 @@ export default class FontSizesList extends Component {
           onRemove={this.onRemove}/>)
     })
 
+    const codeLines = sizes.map((size, key) => {
+      const { number, unit } = size
+      const index = sizes.length - key
+
+      return (
+        `$fontSize${index}: ${number + unit};\n`)
+    })
+
     return (
       <Section title="Typography">
         <form className="edit" onSubmit={this.onAddHandler}>
@@ -75,7 +84,9 @@ export default class FontSizesList extends Component {
             </ul>
           </div>
           <div className="col-md-4 col-sm-12 code">
-            <div>code</div>
+            <CodeView>
+              {codeLines}
+            </CodeView>
           </div>
         </div>
       </Section>)
