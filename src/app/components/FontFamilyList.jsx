@@ -73,7 +73,7 @@ export default class FontFamilyList extends Component {
               {fontFamilyItems}
             </ul>
           </div>
-          <div className="col-md-4 col-sm-12 slz-section-code">
+          <div className="col-md-4 col-sm-12 code">
             <div>code</div>
           </div>
         </div>

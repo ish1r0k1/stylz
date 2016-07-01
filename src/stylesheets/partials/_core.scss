@@ -78,6 +78,11 @@
   height: $fz_large;
 }
 
+.code {
+  > pre { padding: 0; }
+  .hljs { padding: 9.5px; }
+}
+
 .page__heading {
   padding-bottom: 40px;
 

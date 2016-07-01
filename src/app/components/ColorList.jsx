@@ -67,12 +67,12 @@ export default class ColorList extends Component {
           </div>
         </form>
         <div className="row">
-          <div className="col-md-8 col-sm12">
+          <div className="col-md-8 col-sm-12">
             <ul className="row colors list">
               {colorItems}
             </ul>
           </div>
-          <div className="col-md-4 col-sm-12 slz-section-code">
+          <div className="col-md-4 col-sm-12 code">
             <div>code</div>
           </div>
         </div>
