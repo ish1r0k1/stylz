@@ -23,8 +23,11 @@ export default class ColorList extends Component {
 
     const { onUpdate, colors } = this.props
     const { index } = this.state
-    const name = `color${index}`;
-    const data = ReactDOM.findDOMNode(this.refs.color).value
+    const name = `color${index}`
+    const node = ReactDOM.findDOMNode(this.refs.color)
+    const data = node.value
+
+    node.value = ''
 
     this.setState({ index: index + 1 })
 
