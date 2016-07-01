@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
+import Color from 'color'
 import Section from './Section'
 import ColorItem from './ColorItem'
 
@@ -46,11 +47,14 @@ export default class ColorList extends Component {
     const { colors } = this.props
 
     const colorItems = colors.map((color, key) => {
+      let { name, data } = color
+      data = Color(data)
+
       return (
         <ColorItem index={key}
           key={key}
-          name={color.name}
-          data={color.data}
+          name={name}
+          data={data}
           onRemove={this.onRemove}/>)
     })
 

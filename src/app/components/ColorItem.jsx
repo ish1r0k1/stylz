@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import Color from 'color'
 
 export default class ColorItem extends Component {
   static get propTypes() {
     return {
       name: PropTypes.string.isRequired,
-      data: PropTypes.string.isRequired
+      data: PropTypes.object.isRequired
     }
   }
 
@@ -23,10 +22,9 @@ export default class ColorItem extends Component {
 
   render() {
     const { index, name, data } = this.props
-    const color = Color(data)
 
     const styles = {
-      backgroundColor: color.hexString()
+      backgroundColor: data.hexString()
     }
 
     return (
@@ -37,8 +35,8 @@ export default class ColorItem extends Component {
           </div>
           <div className="col-md-8 col-xs-8 color__data">
             <div className="color__name">${name}</div>
-            <div className="color__hex">{color.hexString()}</div>
-            <div className="color__rgb">{color.rgbString()}</div>
+            <div className="color__hex">{data.hexString()}</div>
+            <div className="color__rgb">{data.rgbString()}</div>
           </div>
           <a onClick={this.onRemoveHandler.bind(this, index)} className="item__remove">×</a>
         </div>
