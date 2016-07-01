@@ -11,10 +11,18 @@ export default class ColorItem extends Component {
 
   constructor(props) {
     super(props)
+    this.onRemoveHandler = this.onRemoveHandler.bind(this)
+  }
+
+  onRemoveHandler(index, evt) {
+    evt.preventDefault()
+
+    const { onRemove } = this.props
+    onRemove(index)
   }
 
   render() {
-    const { name, data } = this.props
+    const { index, name, data } = this.props
     const color = Color(data)
 
     const styles = {
@@ -28,10 +36,11 @@ export default class ColorItem extends Component {
             <span style={styles}></span>
           </div>
           <div className="col-md-8 col-xs-8 color__data">
-            <div className="color__name">{name}</div>
+            <div className="color__name">${name}</div>
             <div className="color__hex">{color.hexString()}</div>
             <div className="color__rgb">{color.rgbString()}</div>
           </div>
+          <a onClick={this.onRemoveHandler.bind(this, index)} className="item__remove">×</a>
         </div>
       </li>
     )
