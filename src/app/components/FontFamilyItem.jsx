@@ -13,8 +13,15 @@ export default class FontFamilyItem extends Component {
     super(props)
   }
 
+  onRemoveHandler(index, evt) {
+    evt.preventDefault()
+
+    const { onRemove } = this.props
+    onRemove(index)
+  }
+
   render() {
-    const { family, weight } = this.props
+    const { index, family, weight } = this.props
 
     const styles = {
       fontFamily: family,
@@ -27,6 +34,7 @@ export default class FontFamilyItem extends Component {
           <span className="font-family__name" style={styles}>{family}</span>
           <span className="font-family__weight">font-weight: {weight}</span>
         </p>
+        <a onClick={this.onRemoveHandler.bind(this, index)} className="item__remove">×</a>
       </li>)
   }
 }

@@ -61,7 +61,7 @@ export class ProjectEdit extends Component {
         </div>
         <ColorList colors={project.colors} onUpdate={this.onUpdate} />
         <FontSizesList sizes={project.fontSizes} onUpdate={this.onUpdate} />
-        <FontFamilyList families={project.fontFamilies} />
+        <FontFamilyList families={project.fontFamilies} onUpdate={this.onUpdate} />
       </div>)
   }
 }
