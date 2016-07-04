@@ -4,6 +4,7 @@ import { saveProject } from '../../actions/projects'
 import ColorList from '../../components/ColorList'
 import FontSizesList from '../../components/FontSizeList'
 import FontFamilyList from '../../components/FontFamilyList'
+import ProjectConfigure from '../../components/ProjectConfigure'
 
 export class ProjectEdit extends Component {
   static get propTypes() {
@@ -59,6 +60,7 @@ export class ProjectEdit extends Component {
         <div className="page__heading">
           <h2 className="page__title">{project.name}</h2>
         </div>
+        <ProjectConfigure />
         <ColorList colors={project.colors} onUpdate={this.onUpdate} />
         <FontSizesList sizes={project.fontSizes} onUpdate={this.onUpdate} />
         <FontFamilyList families={project.fontFamilies} onUpdate={this.onUpdate} />
