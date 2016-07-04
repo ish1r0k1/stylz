@@ -29,7 +29,8 @@ export class ProjectEdit extends Component {
         name: 'untitled',
         colors: [],
         fontSizes: [],
-        fontFamilies: []
+        fontFamilies: [],
+        publish: true
       }
     }
 
@@ -60,7 +61,7 @@ export class ProjectEdit extends Component {
         <div className="page__heading">
           <h2 className="page__title">{project.name}</h2>
         </div>
-        <ProjectConfigure />
+        <ProjectConfigure publish={project.publish} onUpdate={this.onUpdate} />
         <ColorList colors={project.colors} onUpdate={this.onUpdate} />
         <FontSizesList sizes={project.fontSizes} onUpdate={this.onUpdate} />
         <FontFamilyList families={project.fontFamilies} onUpdate={this.onUpdate} />
