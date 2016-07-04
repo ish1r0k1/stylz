@@ -12,8 +12,12 @@ export default class CodeView extends Component {
   }
 
   applyHighlight() {
-    const { children } = this.props
+    let { children } = this.props
     let className = 'scss'
+
+    if (children.length < 1) {
+      children.push('// Here in example code')
+    }
 
     const childs = children.map((child, i) => {
       const $pre = document.createElement('pre')
@@ -29,8 +33,10 @@ export default class CodeView extends Component {
     const createMarkup = () => {
       let html = ''
 
-      for (let i = 0; i < childs.length; i++) {
-        html += childs[i]
+      if (childs.length) {
+        for (let i = 0; i < childs.length; i++) {
+          html += childs[i]
+        }
       }
 
       return { __html: html }
@@ -53,6 +59,6 @@ export default class CodeView extends Component {
 
   render() {
     return (
-      <pre />)
+      <pre className="hljs" />)
   }
 }
