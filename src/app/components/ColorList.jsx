@@ -71,10 +71,8 @@ export default class ColorList extends Component {
       <Section title="Colors">
         <form className="edit" onSubmit={this.onAddHandler}>
           <div className="input-group">
-            <div className="input-field">
+            <div className="input-field input-field--compact">
               <input type="text" placeholder="Input adding color" ref="color"/>
-            </div>
-            <div className="input-field">
               <input type="submit" value=""/>
             </div>
           </div>

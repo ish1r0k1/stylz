@@ -69,10 +69,8 @@ export default class FontSizesList extends Component {
       <Section title="Typography">
         <form className="edit" onSubmit={this.onAddHandler}>
           <div className="input-group">
-            <div className="input-field">
+            <div className="input-field input-field--compact">
               <input type="text" placeholder="Input adding font-size" ref="size"/>
-            </div>
-            <div className="input-field">
               <input type="submit" value=""/>
             </div>
           </div>

@@ -65,15 +65,12 @@ export default class FontFamilyList extends Component {
         `$${toCamelCase(family.toLowerCase())}: '${family}', sans-serif;\n`)
     })
 
-
     return (
       <Section title="Font Families">
         <form className="edit" onSubmit={this.onAddHandler}>
           <div className="input-group">
-            <div className="input-field">
+            <div className="input-field input-field--compact">
               <input type="text" placeholder="Input adding font-family" ref="family"/>
-            </div>
-            <div className="input-field">
               <input type="submit" value=""/>
             </div>
           </div>
