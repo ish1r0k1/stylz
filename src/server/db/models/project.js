@@ -13,6 +13,7 @@ const ProjectSchema = new mongoose.Schema({
   colors: Array,
   fontSizes: Array,
   fontFamilies: Array,
+  publish: Boolean,
   owner: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 

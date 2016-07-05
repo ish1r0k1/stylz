@@ -55,6 +55,7 @@ export function saveProject(req, res, next) {
       colors: colors,
       fontSizes: fontSizes,
       fontFamilies: fontFamilies,
+      publish: publish,
       owner: user
     });
 
