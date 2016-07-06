@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { push } from 'react-router-redux'
 import * as types from '../types'
 import Color from 'color'
 
@@ -34,6 +35,17 @@ const saveProjectSuccess = (project) => {
 
 const saveProjectError = () => {
   return { type: types.SAVE_PROJECT_ERROR }
+}
+
+const deleteProjectSuccess = (id) => {
+  return {
+    type: types.DELETE_PROJECT_SUCCESS,
+    id
+  }
+}
+
+const deleteProjectError = () => {
+  return { type: types.DELETE_PROJECT_ERROR }
 }
 
 
@@ -75,22 +87,6 @@ export const fetchProject = (id) => {
 }
 
 export const saveProject = (project) => {
-  project = {
-    name: 'untitled',
-    colors: [{
-      name: 'Black',
-      data: Color('#000000').hexString()
-    }],
-    fontSizes: [{
-      number: 10,
-      unit: 'px'
-    }],
-    fontFamilies: [{
-      family: 'Roboto',
-      weight: 300
-    }]
-  }
-
   return (dispatch, getState) => {
     const { user: { token } } = getState()
     const saveRequest = !project.id ? request.post(`/api/projects`) : request.put(`/api/projects/${project.id}`)
@@ -101,9 +97,34 @@ export const saveProject = (project) => {
       .end((err, res) => {
         if (res.status === 200) {
           dispatch(saveProjectSuccess(res.body))
+          dispatch(push('/projects'))
         } else {
           dispatch(saveProjectError())
         }
       })
+  }
+}
+
+export const deleteProject = (id) => {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState()
+
+    return request
+      .delete(`/api/projects/${id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send()
+      .end((err, res) => {
+        if (res.status === 200) {
+          dispatch(deleteProjectSuccess(id))
+        } else {
+          dispatch(deleteProjectError())
+        }
+      })
+  }
+}
+
+export const canselProject = () => {
+  return dispatch => {
+    dispatch(push('/projects'))
   }
 }

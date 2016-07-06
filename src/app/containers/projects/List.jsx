@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { fetchProjects } from '../../actions/projects'
+import { fetchProjects, deleteProject } from '../../actions/projects'
 
 export class ProjectList extends Component {
   static get propTypes() {
@@ -18,8 +18,9 @@ export class ProjectList extends Component {
     fetchProjects()
   }
 
-  onDeleteHandler(projectId) {
-    console.log(`project delete: ${projectId}`)
+  onDeleteHandler(id) {
+    const { deleteProject } = this.props
+    deleteProject(id)
   }
 
   render() {
@@ -36,7 +37,7 @@ export class ProjectList extends Component {
               <Link to={`/projects/view/${item.id}`}>{item.name}</Link>
               <div className="projects__item-ctrls">
                 <Link to={`/projects/edit/${item.id}`}>Edit</Link>
-                <a onClick={this.onDeleteHandler}>Delete</a>
+                <a onClick={this.onDeleteHandler.bind(this, item.id)}>Delete</a>
               </div>
             </li>
           ))}
@@ -56,5 +57,5 @@ const mapStateToProps = ({ project }) => {
 
 export default connect(
   mapStateToProps,
-  { fetchProjects }
+  { fetchProjects, deleteProject }
 )(ProjectList)

@@ -35,6 +35,19 @@ export default function project(state = {
         },
         list: [action.project.id, ...state.list]
       }
+    case DELETE_PROJECT_SUCCESS:
+      let index
+
+      state.list.forEach((project, key) => {
+        if (project.id === action.id) index = key
+      })
+      delete state.items[action.id]
+      state.list.splice(index, 1)
+
+      return {
+        items: {...state.items},
+        list: [...state.list]
+      }
     default:
       return state
   }
