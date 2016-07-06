@@ -101,10 +101,16 @@
   font-size: $fz_larger;
   @extend %roboto;
 
-  &.editable {
-    border: solid 1px $light-gray;
+  input {
     padding: 5px 8px;
     margin: -5px -8px;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      border: solid 1px $light-gray;
+      margin: -6px -9px;
+    }
   }
 }
 
@@ -132,7 +138,8 @@
 .input-field {
   margin: 20px 0;
 
-  input {
+  input,
+  button {
     width: 100%;
     font-size: $fz_normal;
     padding: 8px 12px;
@@ -142,16 +149,23 @@
   }
 
   &.input-field--compact {
-    input {
+    input,
+    button {
       padding-top: 4px;
       padding-bottom: 4px;
     }
   }
 
-  input[type=submit] {
+  input[type=submit],
+  button {
     background-color: $primary-color;
     color: $white;
     border: solid 1px darken($primary-color, 5);
+
+    &.cancel {
+      background-color: darken($light-gray, 10);
+      border: solid 1px darken($light-gray, 15);
+    }
   }
 
   .label {
@@ -159,7 +173,7 @@
     color: $gray;
   }
 
-  &.input-field--compact {
+  .edit & {
     width: 320px;
 
     input[type=text] { width: 60%; }
