@@ -77,7 +77,19 @@ export function updateProject(req, res, next) {
 }
 
 export function deleteProject(req, res, next) {
+  const { id } = req.params;
+  const { username } = req.decoded;
 
+  Project.findOne({ _id: id }).populate('owner').exec((findErr, project) => {
+    if (findErr) return next(findErr);
+
+    if (project.owner.username === username) {
+      project.remove()
+      return res.status(200).json({ message: 'You have successfully deleted.' });
+    } else {
+      return res.status(403).json({ message: 'You don\'t have permission to delete.' });
+    }
+  })
 }
 
 export default {
