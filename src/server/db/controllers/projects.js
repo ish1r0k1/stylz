@@ -30,10 +30,11 @@ export function getProjects(req, res, next) {
 }
 
 export function getProject(req, res, next) {
-  const { id } = req.body;
+  const { id } = req.params;
 
-  Project.findOne({ id: id }, (findErr, project) => {
+  Project.findOne({ _id: id }, (findErr, project) => {
     if (findErr) return res.status(500).json({ message: findErr });
+    if (!project) return res.status(404).json({ message: 'Specified project was not found.' });
 
     const { name, colors, fontSizes, fontFamilies } = project;
     const restult = Object.assign({},
