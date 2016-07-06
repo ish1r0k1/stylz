@@ -46,7 +46,7 @@ export function getProject(req, res, next) {
 }
 
 export function saveProject(req, res, next) {
-  const { name, colors, fontSizes, fontFamilies } = req.body;
+  const { name, colors, fontSizes, fontFamilies, publish } = req.body;
   const { username } = req.decoded;
 
   User.findOne({ username }, (findErr, user) => {
@@ -64,7 +64,7 @@ export function saveProject(req, res, next) {
 
       const restult = Object.assign({},
         { id: project._id },
-        { name, colors, fontSizes, fontFamilies }
+        { name, colors, fontSizes, fontFamilies, publish }
       );
 
       return res.status(200).json(restult);
