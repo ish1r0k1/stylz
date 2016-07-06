@@ -26,19 +26,21 @@ export default class ProjectConfigure extends Component {
     return (
       <Section title="Configuration">
         <form className="edit">
-          <div className="input-field input-toggle">
-            <div className="label">Publish</div>
-            <div className={toggleClassName}>
-              {publish ?
-                <input type="checkbox" ref="publish" defaultChecked/>
-                : <input type="checkbox" ref="publish"/>
-              }
-              <div className="toggle-field" onClick={this.onChange}>
-                <label className="toggle-on">Yes</label>
-                <label className="toggle-off">No</label>
-                <span className="toggle-handle"></span>
+          <div className="row">
+            <div className="col-md-4 input-field input-toggle">
+              <div className="label">Publish</div>
+              <div className={toggleClassName}>
+                {publish ?
+                  <input type="checkbox" ref="publish" defaultChecked/>
+                  : <input type="checkbox" ref="publish"/>
+                }
+                <div className="toggle-field" onClick={this.onChange}>
+                  <label className="toggle-on">Yes</label>
+                  <label className="toggle-off">No</label>
+                  <span className="toggle-handle"></span>
+                </div>
               </div>
-            </div>
+          </div>
           </div>
         </form>
       </Section>

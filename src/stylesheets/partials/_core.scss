@@ -138,6 +138,14 @@
     padding: 8px 12px;
     background-color: $white;
     height: 100%;
+    border: solid 1px $white;
+  }
+
+  &.input-field--compact {
+    input {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
   }
 
   input[type=submit] {
@@ -173,6 +181,15 @@
   overflow: hidden;
   border: solid 1px $light-gray;
   border-radius: 3px;
+  height: $fz_normal;
+
+  .input-field & {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    bottom: 0;
+    margin: auto 0;
+  }
 
   &.is-on { border-color: $primary-color; }
 
@@ -183,6 +200,7 @@
   position: relative;
   width: 200%;
   transition: all .3s ease;
+  height: 100%;
 
   .is-on & { left: 0; }
   .is-off & { left: -100%; }
@@ -194,10 +212,11 @@
   bottom: 0;
   left: 0;
   right: 50%;
-  padding: 12px 16px;
+  padding: 10px 16px;
   font-size: 0;
   background-color: $primary-color;
   display: block;
+  height: 100%;
 }
 
 .toggle-off {
@@ -211,7 +230,7 @@
   position: relative;
   height: 100%;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 10px 16px;
   width: 0;
   background-color: $white;
   display: block;
