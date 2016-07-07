@@ -63,18 +63,41 @@ export function saveProject(req, res, next) {
     project.save((saveErr) => {
       if (saveErr) return next(saveErr);
 
-      const restult = Object.assign({},
+      const result = Object.assign({},
         { id: project._id },
         { name, colors, fontSizes, fontFamilies, publish }
       );
 
-      return res.status(200).json(restult);
+      return res.status(200).json(result);
     })
   });
 }
 
 export function updateProject(req, res, next) {
+  const { id } = req.params;
+  const { name, colors, fontSizes, fontFamilies, publish } = req.body;
+  const { username } = req.decoded;
 
+  Project.findOne({ _id: id }).populate('owner').exec((findErr, project) => {
+    if (findErr) return next(findErr);
+
+    if (project.owner.username === username) {
+      Project.update({ _id: id }, { name, colors, fontSizes, fontFamilies, publish },
+        { upsert: false, multi: true },
+        (saveErr, project) => {
+          if (saveErr) return next(saveErr);
+
+          const result = Object.assign({},
+            { id, name, colors, fontSizes, fontFamilies, publish }
+          );
+
+          return res.status(200).json(result);
+        }
+      );
+    } else {
+      return res.status(403).json({ message: 'You don\'t have permission to delete.' });
+    }
+  });
 }
 
 export function deleteProject(req, res, next) {
@@ -85,12 +108,12 @@ export function deleteProject(req, res, next) {
     if (findErr) return next(findErr);
 
     if (project.owner.username === username) {
-      project.remove()
+      project.remove();
       return res.status(200).json({ message: 'You have successfully deleted.' });
     } else {
       return res.status(403).json({ message: 'You don\'t have permission to delete.' });
     }
-  })
+  });
 }
 
 export default {
