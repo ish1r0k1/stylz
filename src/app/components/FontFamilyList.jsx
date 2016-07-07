@@ -24,7 +24,7 @@ export default class FontFamilyList extends Component {
   onAddHandler(evt) {
     evt.preventDefault()
 
-    const { onUpdate, families } = this.props
+    const { onUpdate, editable, families } = this.props
     const { index } = this.state
     const node = ReactDOM.findDOMNode(this.refs.family)
     const family = node.value
@@ -46,7 +46,7 @@ export default class FontFamilyList extends Component {
   }
 
   render() {
-    const { families } = this.props
+    const { editable, families } = this.props
 
     const fontFamilyItems = families.map((font, key) => {
       return (
@@ -67,14 +67,17 @@ export default class FontFamilyList extends Component {
 
     return (
       <Section title="Font Families">
-        <form className="edit" onSubmit={this.onAddHandler}>
-          <div className="input-group">
-            <div className="input-field input-field--compact">
-              <input type="text" placeholder="Input adding font-family" ref="family"/>
-              <input type="submit" value=""/>
+        {editable ?
+          <form className="edit" onSubmit={this.onAddHandler}>
+            <div className="input-group">
+              <div className="input-field input-field--compact">
+                <input type="text" placeholder="Input adding font-family" ref="family"/>
+                <input type="submit" value=""/>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+          : null
+        }
         <div className="row">
           <div className="col-md-8">
             <ul className="row font-families list">

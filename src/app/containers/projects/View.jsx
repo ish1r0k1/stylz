@@ -17,7 +17,9 @@ export class ProjectView extends Component {
   }
 
   componentDidMount() {
-    const { fetchProject, params: { id } } = this.props
+    const { fetchProject, project: { items }, params: { id } } = this.props
+
+    if (items[id]) return
 
     fetchProject(id)
   }

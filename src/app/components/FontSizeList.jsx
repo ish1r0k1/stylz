@@ -24,7 +24,7 @@ export default class FontSizesList extends Component {
   onAddHandler(evt) {
     evt.preventDefault()
 
-    const { onUpdate, sizes } = this.props
+    const { onUpdate, editable, sizes } = this.props
     const { index } = this.state
     const node = ReactDOM.findDOMNode(this.refs.size)
     const number = parseInt(node.value)
@@ -46,7 +46,7 @@ export default class FontSizesList extends Component {
   }
 
   render() {
-    const { sizes } = this.props
+    const { editable, sizes } = this.props
 
     const fontSizeItems = sizes.map((size, key) => {
       return (
@@ -67,14 +67,17 @@ export default class FontSizesList extends Component {
 
     return (
       <Section title="Typography">
-        <form className="edit" onSubmit={this.onAddHandler}>
-          <div className="input-group">
-            <div className="input-field input-field--compact">
-              <input type="text" placeholder="Input adding font-size" ref="size"/>
-              <input type="submit" value=""/>
+        {editable ?
+          <form className="edit" onSubmit={this.onAddHandler}>
+            <div className="input-group">
+              <div className="input-field input-field--compact">
+                <input type="text" placeholder="Input adding font-size" ref="size"/>
+                <input type="submit" value=""/>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+          : null
+        }
         <div className="row">
           <div className="col-md-8">
             <ul className="font-sizes list">

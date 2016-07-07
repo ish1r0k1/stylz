@@ -45,7 +45,7 @@ export default class ColorList extends Component {
   }
 
   render() {
-    const { colors } = this.props
+    const { editable, colors } = this.props
 
     const colorItems = colors.map((color, key) => {
       let { name, data } = color
@@ -69,14 +69,17 @@ export default class ColorList extends Component {
 
     return (
       <Section title="Colors">
-        <form className="edit" onSubmit={this.onAddHandler}>
-          <div className="input-group">
-            <div className="input-field input-field--compact">
-              <input type="text" placeholder="Input adding color" ref="color"/>
-              <input type="submit" value=""/>
+        {editable ?
+          <form className="edit" onSubmit={this.onAddHandler}>
+            <div className="input-group">
+              <div className="input-field input-field--compact">
+                <input type="text" placeholder="Input adding color" ref="color"/>
+                <input type="submit" value=""/>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+          : null
+        }
         <div className="row">
           <div className="col-md-8 col-sm-12">
             <ul className="row colors list">
